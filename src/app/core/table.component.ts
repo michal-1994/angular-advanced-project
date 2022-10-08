@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Product } from '../model/product.model';
 import { Model } from '../model/repository.model';
-import { MODES, SharedState } from './sharedState.model';
+import { MODES, SharedState, SHARED_STATE } from './sharedState.model';
 import '@angular/common/locales/global/pl';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'paTable',
@@ -12,7 +13,7 @@ export class TableComponent {
 
   constructor(
     private model: Model,
-    private state: SharedState
+    @Inject(SHARED_STATE) public observer: Observer<SharedState>
   ) { }
 
   getProduct (key: number): Product {
@@ -28,13 +29,15 @@ export class TableComponent {
   }
 
   editProduct (key: number): void {
-    this.state.id = key;
-    this.state.mode = MODES.EDIT;
+    this.observer.next(new SharedState(MODES.EDIT, key));
+    // this.state.id = key;
+    // this.state.mode = MODES.EDIT;
   }
 
   createProduct (): void {
-    this.state.id = undefined;
-    this.state.mode = MODES.CREATE;
+    this.observer.next(new SharedState(MODES.CREATE));
+    // this.state.id = undefined;
+    // this.state.mode = MODES.CREATE;
   }
 
 }

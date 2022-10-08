@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { Subject } from 'rxjs';
 import { ModelModule } from '../model/model.module';
 import { FormComponent } from './form.component';
-import { SharedState } from './sharedState.model';
+import { SharedState, SHARED_STATE } from './sharedState.model';
 import { TableComponent } from './table.component';
 
 @NgModule({
@@ -21,8 +22,6 @@ import { TableComponent } from './table.component';
     TableComponent,
     FormComponent
   ],
-  providers: [
-    SharedState
-  ]
+  providers: [{ provide: SHARED_STATE, useValue: new Subject<SharedState>() }]
 })
 export class CoreModule { }
