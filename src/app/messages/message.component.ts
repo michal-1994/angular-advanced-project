@@ -13,7 +13,7 @@ export class MessageComponent {
   constructor (
     messageService: MessageService
   ) {
-    messageService.registerMessageHandler(message => this.lastMessage = message);
+    messageService.messages.subscribe(message => this.lastMessage = message);
   }
 
 }
