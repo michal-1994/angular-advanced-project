@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { ModelModule } from '../model/model.module';
 import { FormComponent } from './form.component';
 import { SharedState, SHARED_STATE } from './sharedState.model';
+import { StatePipe } from './state.pipe';
 import { TableComponent } from './table.component';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TableComponent } from './table.component';
   ],
   declarations: [
     TableComponent,
-    FormComponent
+    FormComponent,
+    StatePipe
   ],
   exports: [
     ModelModule,
