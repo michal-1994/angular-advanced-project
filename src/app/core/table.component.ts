@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../model/product.model';
 import { Model } from '../model/repository.model';
 import { MODES, SharedState } from './sharedState.model';
+import '@angular/common/locales/global/pl';
 
 @Component({
   selector: 'paTable',
