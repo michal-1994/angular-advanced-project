@@ -26,29 +26,43 @@ export class Model {
 
   saveProduct (product: Product): void {
     if(product.id == 0 || product.id == null) {
-      product.id = this.generateID();
-      this.products.push(product);
+      this.dataSource.saveProduct(product)
+        .subscribe(product => this.products.push(product));
+      // product.id = this.generateID();
+      // this.products.push(product);
     } else {
-      let index = this.products.findIndex(p => this.locator(p, product.id));
-      if (index > -1) {
-        this.products.splice(index, 1, product);
-      }
+      this.dataSource.updateProduct(product)
+        .subscribe(product => {
+          let index = this.products.findIndex(item => this.locator(item, product.id));
+          this.products.splice(index, 1, product);
+        });
+      // let index = this.products.findIndex(p => this.locator(p, product.id));
+      // if (index > -1) {
+      //   this.products.splice(index, 1, product);
+      // }
     }
   }
 
   deleteProduct (id: number): void {
-    let index = this.products.findIndex(p => this.locator(p, id));
-    if (index > -1) {
-      this.products.splice(index, 1);
-    }
+    this.dataSource.deleteProduct(id)
+      .subscribe(() => {
+        let index = this.products.findIndex(product => this.locator(product, id));
+        if (index > -1) {
+          this.products.splice(index, 1);
+        }
+      });
+    // let index = this.products.findIndex(p => this.locator(p, id));
+    // if (index > -1) {
+    //   this.products.splice(index, 1);
+    // }
   }
 
-  generateID (): number {
-    let candidate = 100;
-    while (this.getProduct(candidate) != null) {
-      candidate++;
-    }
-    return candidate;
-  }
+  // generateID (): number {
+  //   let candidate = 100;
+  //   while (this.getProduct(candidate) != null) {
+  //     candidate++;
+  //   }
+  //   return candidate;
+  // }
 
 }
