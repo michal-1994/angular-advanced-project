@@ -1,6 +1,7 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Product } from './product.model';
 
 export const REST_URL = new InjectionToken('rest_url');
@@ -38,7 +39,11 @@ export class RestDataSource {
     return this.http.request<T>(verb, url, {
       body: body,
       headers: myHeaders
-    });
+    }).pipe(
+      catchError((error: Response) =>
+        throwError(`Błąd sieci: ${error.statusText} (${error.status})`)
+      )
+    );
   }
 
 }
