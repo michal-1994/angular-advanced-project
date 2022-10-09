@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Product } from './product.model';
-import { StaticDataSource } from './static.datasource';
+import { RestDataSource } from './rest.datasource';
+// import { StaticDataSource } from './static.datasource';
 
 @Injectable()
 export class Model {
-  private products = new Array<Product>();
+  private products: Product[] = new Array<Product>();
   private locator = (p: Product, id: number) => p.id == id;
 
   constructor (
-    private dataSource: StaticDataSource
+    private dataSource: RestDataSource
+    // private dataSource: StaticDataSource
   ) {
-    this.dataSource.getData().forEach((p) => this.products.push(p))
+    // this.dataSource.getData().forEach((p) => this.products.push(p))
+    dataSource.getData().subscribe(data => this.products = data)
   }
 
   getProducts (): Product[] {
