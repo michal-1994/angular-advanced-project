@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
 import { Model } from './repository.model';
 // import { StaticDataSource } from './static.datasource';
 import { RestDataSource, REST_URL } from './rest.datasource';
 
 @NgModule({
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    HttpClientJsonpModule
   ],
   providers: [
     Model,

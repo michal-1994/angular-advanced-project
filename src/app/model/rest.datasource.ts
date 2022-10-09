@@ -1,5 +1,5 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from './product.model';
 
@@ -14,6 +14,7 @@ export class RestDataSource {
   ) { }
 
   getData (): Observable<Product[]> {
+    // return this.http.jsonp<Product[]>(this.url, 'callback');
     return this.sendRequest<Product[]>('GET', this.url);
   }
 
@@ -30,8 +31,13 @@ export class RestDataSource {
   }
 
   private sendRequest<T>(verb: string, url: string, body?: Product): Observable<T> {
+    let myHeaders = new HttpHeaders();
+    myHeaders = myHeaders.set('Access-Key', 'sekret');
+    myHeaders = myHeaders.set('Application-Name', ['AdvancedProject', 'BaseProject']);
+
     return this.http.request<T>(verb, url, {
-      body: body
+      body: body,
+      headers: myHeaders
     });
   }
 
