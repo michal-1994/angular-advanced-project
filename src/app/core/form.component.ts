@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../model/product.model';
 import { Model } from '../model/repository.model';
 
@@ -16,7 +16,8 @@ export class FormComponent {
 
   constructor(
     private model: Model,
-    activeRoute: ActivatedRoute
+    activeRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.editing = activeRoute.snapshot.url[1].path == 'edit';
     let id = activeRoute.snapshot.params['id'];
@@ -39,8 +40,9 @@ export class FormComponent {
   submitForm (form: NgForm): void {
     if (form.valid) {
       this.model.saveProduct(this.product);
-      this.product = new Product();
-      form.reset();
+      // this.product = new Product();
+      // form.reset();
+      this.router.navigateByUrl('/');
     }
   }
 
