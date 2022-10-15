@@ -18,7 +18,7 @@
       </button>
       <button class="btn btn-warning btn-sm"
               (click)="editProduct(item.id)"
-              routerLink="/form/edit">
+              [routerLink]="['form', 'edit', item.id]">
         Edytuj
       </button>
     </td>

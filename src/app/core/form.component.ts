@@ -19,6 +19,10 @@ export class FormComponent {
     activeRoute: ActivatedRoute
   ) {
     this.editing = activeRoute.snapshot.url[1].path == 'edit';
+    let id = activeRoute.snapshot.params['id'];
+    if (id != null) {
+      Object.assign(this.product, model.getProduct(id) || new Product());
+    }
   }
 
   submitForm (form: NgForm): void {
