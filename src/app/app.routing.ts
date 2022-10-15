@@ -4,11 +4,7 @@ import { TableComponent } from "./core/table.component";
 
 const routes: Routes = [
   {
-    path: 'form/edit',
-    component: FormComponent
-  },
-  {
-    path: 'form/create',
+    path: 'form/:mode',
     component: FormComponent
   },
   {
