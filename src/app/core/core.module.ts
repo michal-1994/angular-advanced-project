@@ -2,22 +2,23 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
-import { Message } from '../messages/message.model';
 import { MessageModule } from '../messages/message.module';
 import { MessageService } from '../messages/message.service';
 import { ModelModule } from '../model/model.module';
 import { Model } from '../model/repository.model';
 import { FormComponent } from './form.component';
-import { MODES, SharedState, SHARED_STATE } from './sharedState.model';
+import { SharedState, SHARED_STATE } from './sharedState.model';
 import { StatePipe } from './state.pipe';
 import { TableComponent } from './table.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     ModelModule,
-    MessageModule
+    MessageModule,
+    RouterModule
   ],
   declarations: [
     TableComponent,
