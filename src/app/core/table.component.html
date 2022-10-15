@@ -17,7 +17,6 @@
         Usuń
       </button>
       <button class="btn btn-warning btn-sm"
-              (click)="editProduct(item.id)"
               [routerLink]="['form', 'edit', item.id, {
                 name: item.name,
                 category: item.category,
@@ -29,7 +28,6 @@
   </tr>
 </table>
 <button class="btn btn-primary m-1"
-        (click)="createProduct()"
         routerLink="/form/create">
   Dodaj nowy produkt
 </button>
