@@ -7,14 +7,20 @@ import { MessageModule } from './messages/message.module';
 import { FormComponent } from './core/form.component';
 import { MessageComponent } from './messages/message.component';
 import { TableComponent } from './core/table.component';
+import { AppComponent } from './app.component';
+import { routing } from './app.routing';
 
 @NgModule({
   imports: [
     BrowserModule,
     ModelModule,
     CoreModule,
-    MessageModule
+    MessageModule,
+    routing
   ],
-  bootstrap: [TableComponent, FormComponent, MessageComponent]
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

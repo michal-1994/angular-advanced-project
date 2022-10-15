@@ -33,13 +33,14 @@ import { TableComponent } from './table.component';
     provide: SHARED_STATE,
     deps: [MessageService, Model],
     useFactory: (messageService, model) => {
-      let subject = new Subject<SharedState>();
-      subject
-        .subscribe(
-          message => messageService.reportMessage(
-            new Message(MODES[message.mode] + [message.id != undefined ? ` ${model.getProduct(message.id).name}` : ''])
-          ));
-      return subject;
+      return new Subject<SharedState>();
+    //   let subject = new Subject<SharedState>();
+    //   subject
+    //     .subscribe(
+    //       message => messageService.reportMessage(
+    //         new Message(MODES[message.mode] + [message.id != undefined ? ` ${model.getProduct(message.id).name}` : ''])
+    //       ));
+    //   return subject;
     }
   }]
 })
