@@ -10,6 +10,9 @@ import { TermsGuard } from "./terms.guard";
 const childRouters: Routes = [
   {
     path: '',
+    canActivate: [
+      TermsGuard
+    ],
     children: [
       {
         path: 'products',
