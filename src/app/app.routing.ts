@@ -5,6 +5,7 @@ import { NotFoundComponent } from "./core/notFound.component";
 import { ProductCountComponent } from "./core/productCount.component";
 import { TableComponent } from "./core/table.component";
 import { ModelResolver } from "./model/model.resolver";
+import { TermsGuard } from "./terms.guard";
 
 const childRouters: Routes = [
   {
@@ -42,7 +43,10 @@ const routes: Routes = [
     component: FormComponent,
     resolve: {
       model: ModelResolver
-    }
+    },
+    canActivate: [
+      TermsGuard
+    ]
   },
   {
     path: 'table',
