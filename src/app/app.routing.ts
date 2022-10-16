@@ -1,5 +1,6 @@
 import { Routes, RouterModule } from "@angular/router";
 import { FormComponent } from "./core/form.component";
+import { NotFoundComponent } from "./core/notFound.component";
 import { TableComponent } from "./core/table.component";
 
 const routes: Routes = [
@@ -12,8 +13,22 @@ const routes: Routes = [
     component: FormComponent
   },
   {
-    path: '',
+    path: 'nie',
+    redirectTo: '/form/create',
+    pathMatch: 'prefix'
+  },
+  {
+    path: 'table',
     component: TableComponent
+  },
+  {
+    path: '',
+    redirectTo: '/table',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 
