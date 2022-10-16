@@ -5,41 +5,44 @@ import { NotFoundComponent } from "./core/notFound.component";
 import { ProductCountComponent } from "./core/productCount.component";
 import { TableComponent } from "./core/table.component";
 
+const childRouters: Routes = [
+  {
+    path: 'products',
+    component: ProductCountComponent
+  },
+  {
+    path: 'categories',
+    component: CategoryCountComponent
+  },
+  {
+    path: '',
+    component: ProductCountComponent
+  }
+];
+
 const routes: Routes = [
   {
-    path: 'form/:mode/:id',
+    path: 'table/form/:mode/:id',
     component: FormComponent
   },
   {
-    path: 'form/:mode',
+    path: 'table/form/:mode',
     component: FormComponent
   },
   {
     path: 'nie',
-    redirectTo: '/form/create',
+    redirectTo: 'table/form/create',
     pathMatch: 'prefix'
   },
   {
     path: 'table',
     component: TableComponent,
-    children: [
-      {
-        path: 'products',
-        component: ProductCountComponent
-      },
-      {
-        path: 'categories',
-        component: CategoryCountComponent
-      }
-    ]
+    children: childRouters
   },
   {
     path: 'table/:category',
-    component: TableComponent
-  },
-  {
-    path: 'table',
-    component: TableComponent
+    component: TableComponent,
+    children: childRouters
   },
   {
     path: '',
