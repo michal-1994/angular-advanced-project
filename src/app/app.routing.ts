@@ -30,11 +30,6 @@ const routes: Routes = [
     component: FormComponent
   },
   {
-    path: 'nie',
-    redirectTo: 'table/form/create',
-    pathMatch: 'prefix'
-  },
-  {
     path: 'table',
     component: TableComponent,
     children: childRouters
