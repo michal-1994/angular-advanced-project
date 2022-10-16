@@ -18,6 +18,10 @@ const routes: Routes = [
     pathMatch: 'prefix'
   },
   {
+    path: 'table/:category',
+    component: TableComponent
+  },
+  {
     path: 'table',
     component: TableComponent
   },

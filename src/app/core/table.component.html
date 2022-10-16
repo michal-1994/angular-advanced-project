@@ -1,37 +1,59 @@
-<table class="table table-sm table-bordered table-striped">
-  <tr>
-    <th>ID</th>
-    <th>Produkt</th>
-    <th>Kategoria</th>
-    <th>Cena</th>
-    <th></th>
-  </tr>
-  <tr *ngFor="let item of getProducts()">
-    <td>{{ item.id }}</td>
-    <td>{{ item.name }}</td>
-    <td>{{ item.category }}</td>
-    <td>{{ item.price | currency:"PLN":"symbol":undefined:"pl-PL" }}</td>
-    <td class="text-center">
-      <button class="btn btn-danger btn-sm mr-1"
-              (click)="deleteProduct(item.id)">
-        Usuń
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-auto">
+      <button class="btn btn-secondary btn-block"
+              routerLink="/table"
+              routerLinkActive="bg-primary"
+              [routerLinkActiveOptions]="{exact: true}">
+        Wszystkie
       </button>
-      <button class="btn btn-warning btn-sm"
-              [routerLink]="['form', 'edit', item.id]">
-        Edytuj
+      <button *ngFor="let category of categories"
+              class="btn btn-secondary btn-block px-3"
+              [routerLink]="['/table', category]"
+              routerLinkActive="bg-primary">
+        {{ category }}
       </button>
-    </td>
-  </tr>
-</table>
-<button class="btn btn-primary m-1"
-        routerLink="/form/create">
-  Dodaj nowy produkt
-</button>
-<button class="btn btn-danger m-1"
-        (click)="deleteProduct(-1)">
-  Wygeneruj bład HTTP
-</button>
-<button class="btn btn-danger m-1"
-        routerLink="/nie/istnieje">
-  Wygeneruj bład routingu
-</button>
+    </div>
+    <div class="col">
+      <table class="table table-sm table-bordered table-striped">
+        <tr>
+          <th>ID</th>
+          <th>Produkt</th>
+          <th>Kategoria</th>
+          <th>Cena</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let item of getProducts()">
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.price | currency:"PLN":"symbol":undefined:"pl-PL" }}</td>
+          <td class="text-center">
+            <button class="btn btn-danger btn-sm mr-1"
+                    (click)="deleteProduct(item.id)">
+              Usuń
+            </button>
+            <button class="btn btn-warning btn-sm"
+                    [routerLink]="['form', 'edit', item.id]">
+              Edytuj
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="p-2 text-center">
+  <button class="btn btn-primary m-1"
+          routerLink="/form/create">
+    Dodaj nowy produkt
+  </button>
+  <button class="btn btn-danger m-1"
+          (click)="deleteProduct(-1)">
+    Wygeneruj bład HTTP
+  </button>
+  <button class="btn btn-danger m-1"
+          routerLink="/nie/istnieje">
+    Wygeneruj bład routingu
+  </button>
+</div>

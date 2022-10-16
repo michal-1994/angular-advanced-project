@@ -10,7 +10,7 @@ export class ProductCountComponent {
   private differ: KeyValueDiffer<any, any>;
   count: number = 0;
 
-  constructor (
+  constructor(
     private model: Model,
     private keyValueDiffers: KeyValueDiffers,
     private changeDetector: ChangeDetectorRef

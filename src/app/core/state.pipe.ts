@@ -8,7 +8,7 @@ import { MODES, SharedState } from "./sharedState.model";
 })
 export class StatePipe {
 
-  constructor (
+  constructor(
     private model: Model
   ) { }
 

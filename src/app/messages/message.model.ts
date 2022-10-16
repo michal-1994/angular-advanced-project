@@ -1,5 +1,5 @@
 export class Message {
-  constructor (
+  constructor(
     public text: string,
     public error: boolean = false
   ) { }

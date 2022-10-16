@@ -12,7 +12,7 @@ export class MessageComponent {
 
   lastMessage: Message;
 
-  constructor (
+  constructor(
     messageService: MessageService,
     router: Router
   ) {

@@ -5,6 +5,18 @@
   </h5>
 </div>
 
+<div *ngIf="editing"
+     class="d-flex justify-content-between my-2">
+  <button class="btn btn-secondary"
+          [routerLink]="['/form', 'edit', model.getPreviousProductId(product.id)]">
+    Poprzedni
+  </button>
+  <button class="btn btn-secondary"
+          [routerLink]="['/form', 'edit', model.getNextProductId(product.id)]">
+    Następny
+  </button>
+</div>
+
 <form novalidate
       #form="ngForm"
       (ngSubmit)="submitForm(form)"

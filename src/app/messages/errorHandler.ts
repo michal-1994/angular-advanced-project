@@ -5,7 +5,7 @@ import { Message } from './message.model';
 @Injectable()
 export class MessageErrorHandler implements ErrorHandler {
 
-  constructor (
+  constructor(
     private messageService: MessageService,
     private ngZone: NgZone
   ) { }
