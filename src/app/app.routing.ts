@@ -32,11 +32,17 @@ const childRouters: Routes = [
 const routes: Routes = [
   {
     path: 'table/form/:mode/:id',
-    component: FormComponent
+    component: FormComponent,
+    resolve: {
+      model: ModelResolver
+    }
   },
   {
     path: 'table/form/:mode',
-    component: FormComponent
+    component: FormComponent,
+    resolve: {
+      model: ModelResolver
+    }
   },
   {
     path: 'table',
