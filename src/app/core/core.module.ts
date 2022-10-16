@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { ProductCountComponent } from './productCount.component';
 import { CategoryCountComponent } from './categoryCount.component';
 import { NotFoundComponent } from './notFound.component';
+import { UnsavedGuard } from '../unsaved.guard';
 
 @NgModule({
   imports: [
@@ -26,6 +27,9 @@ import { NotFoundComponent } from './notFound.component';
     ProductCountComponent,
     CategoryCountComponent,
     NotFoundComponent
+  ],
+  providers: [
+    UnsavedGuard
   ],
   exports: [
     ModelModule,

@@ -6,6 +6,7 @@ import { ProductCountComponent } from "./core/productCount.component";
 import { TableComponent } from "./core/table.component";
 import { ModelResolver } from "./model/model.resolver";
 import { TermsGuard } from "./terms.guard";
+import { UnsavedGuard } from "./unsaved.guard";
 
 const childRouters: Routes = [
   {
@@ -39,7 +40,10 @@ const routes: Routes = [
     component: FormComponent,
     resolve: {
       model: ModelResolver
-    }
+    },
+    canDeactivate: [
+      UnsavedGuard
+    ]
   },
   {
     path: 'table/form/:mode',

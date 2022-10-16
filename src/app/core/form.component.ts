@@ -13,6 +13,7 @@ export class FormComponent {
 
   product: Product = new Product();
   editing: boolean = false;
+  originalProduct = new Product();
 
   constructor(
     public model: Model,
@@ -24,6 +25,7 @@ export class FormComponent {
       let id = params['id'];
       if (id != null) {
         Object.assign(this.product, model.getProduct(id) || new Product());
+        Object.assign(this.originalProduct, this.product);
       }
     });
   }
@@ -31,12 +33,13 @@ export class FormComponent {
   submitForm (form: NgForm): void {
     if (form.valid) {
       this.model.saveProduct(this.product);
+      this.originalProduct = this.product;
       this.router.navigateByUrl('/');
     }
   }
 
-  resetForm (): void {
-    this.product = new Product();
-  }
+  // resetForm (): void {
+  //   this.product = new Product();
+  // }
 
 }

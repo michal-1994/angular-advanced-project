@@ -19,8 +19,7 @@
 
 <form novalidate
       #form="ngForm"
-      (ngSubmit)="submitForm(form)"
-      (reset)="resetForm()">
+      (ngSubmit)="submitForm(form)">
   <div class="form-group">
     <label>Produkt</label>
     <input type="text"
@@ -56,7 +55,6 @@
     {{ editing ? 'Zapisz' : 'Dodaj' }}
   </button>
   <button class="btn btn-secondary m-1"
-          type="reset"
           routerLink="/">
     Anuluj
   </button>
