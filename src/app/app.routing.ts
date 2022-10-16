@@ -1,6 +1,8 @@
 import { Routes, RouterModule } from "@angular/router";
+import { CategoryCountComponent } from "./core/categoryCount.component";
 import { FormComponent } from "./core/form.component";
 import { NotFoundComponent } from "./core/notFound.component";
+import { ProductCountComponent } from "./core/productCount.component";
 import { TableComponent } from "./core/table.component";
 
 const routes: Routes = [
@@ -16,6 +18,20 @@ const routes: Routes = [
     path: 'nie',
     redirectTo: '/form/create',
     pathMatch: 'prefix'
+  },
+  {
+    path: 'table',
+    component: TableComponent,
+    children: [
+      {
+        path: 'products',
+        component: ProductCountComponent
+      },
+      {
+        path: 'categories',
+        component: CategoryCountComponent
+      }
+    ]
   },
   {
     path: 'table/:category',

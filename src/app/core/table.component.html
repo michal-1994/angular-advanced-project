@@ -15,6 +15,21 @@
       </button>
     </div>
     <div class="col">
+      <button class="btn btn-info mx1"
+              routerLink="/table/products">
+        Liczba produktów
+      </button>
+      <button class="btn btn-primary mx-1"
+              routerLink="/table/categories">
+        Liczba kategorii
+      </button>
+      <button class="btn btn-secondary mx-1"
+              routerLink="/table">
+        Liczba niewiadomo czego :)
+      </button>
+      <div class="my-2">
+        <router-outlet></router-outlet>
+      </div>
       <table class="table table-sm table-bordered table-striped">
         <tr>
           <th>ID</th>
