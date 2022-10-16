@@ -7,6 +7,9 @@ import { FormComponent } from './form.component';
 import { StatePipe } from './state.pipe';
 import { TableComponent } from './table.component';
 import { RouterModule } from '@angular/router';
+import { ProductCountComponent } from './productCount.component';
+import { CategoryCountComponent } from './categoryCount.component';
+import { NotFoundComponent } from './notFound.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,10 @@ import { RouterModule } from '@angular/router';
   declarations: [
     TableComponent,
     FormComponent,
-    StatePipe
+    StatePipe,
+    ProductCountComponent,
+    CategoryCountComponent,
+    NotFoundComponent
   ],
   exports: [
     ModelModule,
