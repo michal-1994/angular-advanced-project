@@ -4,6 +4,7 @@ import { FormComponent } from "./core/form.component";
 import { NotFoundComponent } from "./core/notFound.component";
 import { ProductCountComponent } from "./core/productCount.component";
 import { TableComponent } from "./core/table.component";
+import { LoadGuard } from "./load.guard";
 import { ModelResolver } from "./model/model.resolver";
 import { TermsGuard } from "./terms.guard";
 import { UnsavedGuard } from "./unsaved.guard";
@@ -37,7 +38,12 @@ const childRouters: Routes = [
 const routes: Routes = [
   {
     path: 'ondemand',
-    loadChildren: () => import('./ondemand/ondemand.module').then(m => m.OndemandModule)
+    loadChildren: () => import(
+      './ondemand/ondemand.module'
+    ).then(
+      m => m.OndemandModule
+    ),
+    canLoad: [LoadGuard]
   },
   {
     path: 'table/form/:mode/:id',
