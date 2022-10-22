@@ -36,6 +36,10 @@ const childRouters: Routes = [
 
 const routes: Routes = [
   {
+    path: 'ondemand',
+    loadChildren: () => import('./ondemand/ondemand.module').then(m => m.OndemandModule)
+  },
+  {
     path: 'table/form/:mode/:id',
     component: FormComponent,
     resolve: {
