@@ -1,10 +1,32 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
-import { OndemandComponent } from "./ondemand.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FirstComponent } from './first.component';
+import { OndemandComponent } from './ondemand.component';
+import { SecondComponent } from './second.component';
 
 let routing = RouterModule.forChild([
-  { path: "", component: OndemandComponent }
+  {
+    path: '',
+    component: OndemandComponent,
+    children: [
+      {
+        outlet: 'primary',
+        path: '',
+        component: FirstComponent
+      },
+      {
+        outlet: 'left',
+        path: '',
+        component: SecondComponent
+      },
+      {
+        outlet: 'right',
+        path: '',
+        component: SecondComponent
+      }
+    ]
+  }
 ])
 
 @NgModule({
@@ -13,7 +35,9 @@ let routing = RouterModule.forChild([
     routing
   ],
   declarations: [
-    OndemandComponent
+    OndemandComponent,
+    FirstComponent,
+    SecondComponent
   ],
   exports: [
     OndemandComponent
