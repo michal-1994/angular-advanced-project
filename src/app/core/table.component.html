@@ -1,3 +1,14 @@
+<div class="form-group bg-info text-white p-2">
+  <label>Kategoria</label>
+  <select [(ngModel)]="highlightCategory"
+          class="form-control">
+    <option value="">Brak</option>
+    <option *ngFor="let category of categories"
+            [value]="category">
+      {{ category }}
+    </option>
+  </select>
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-auto">
@@ -34,7 +45,8 @@
           <th>Cena</th>
           <th></th>
         </tr>
-        <tr *ngFor="let item of getProducts()">
+        <tr *ngFor="let item of getProducts()"
+            [@rowHighlight]="getRowState(item.category)">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.category }}</td>

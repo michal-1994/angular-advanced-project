@@ -6,6 +6,7 @@ import { CoreModule } from './core/core.module';
 import { MessageModule } from './messages/message.module';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TermsGuard } from './terms.guard';
 import { LoadGuard } from './load.guard';
 
@@ -15,6 +16,7 @@ import { LoadGuard } from './load.guard';
     ModelModule,
     CoreModule,
     MessageModule,
+    BrowserAnimationsModule,
     routing
   ],
   declarations: [

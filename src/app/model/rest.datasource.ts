@@ -40,9 +40,9 @@ export class RestDataSource {
       body: body,
       headers: myHeaders
     })
-    .pipe(
-      delay(2500)
-    )
+    // .pipe(
+    //   delay(5000)
+    // )
     .pipe(
       catchError((error: Response) =>
         throwError(`Błąd sieci: ${error.statusText} (${error.status})`)
