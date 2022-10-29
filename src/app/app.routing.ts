@@ -42,8 +42,7 @@ const routes: Routes = [
       './ondemand/ondemand.module'
     ).then(
       m => m.OndemandModule
-    ),
-    canLoad: [LoadGuard]
+    )
   },
   {
     path: 'table/form/:mode/:id',
@@ -77,7 +76,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/table',
+    redirectTo: '/ondemand',
     pathMatch: 'full'
   },
   {

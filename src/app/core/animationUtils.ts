@@ -23,7 +23,6 @@ export function getStylesFromClasses(
       }
     }
   }
-  console.log(result);
 
   return result;
 }
