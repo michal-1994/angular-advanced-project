@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Product } from '../model/product.model';
 import { Model } from '../model/repository.model';
@@ -21,17 +21,19 @@ describe('FirstComponent', () => {
     }
   }
 
-  beforeEach(() => {
+  beforeEach(async() => {
     TestBed.configureTestingModule({
       declarations: [FirstComponent],
       providers: [
         { provide: Model, useValue: mockRepository }
       ]
     });
-    fixture = TestBed.createComponent(FirstComponent);
-    component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
-    spanElement = debugElement.query(By.css('span')).nativeElement;
+    TestBed.compileComponents().then(() => {
+      fixture = TestBed.createComponent(FirstComponent);
+      component = fixture.componentInstance;
+      debugElement = fixture.debugElement;
+      spanElement = debugElement.query(By.css('span')).nativeElement;
+    });
   });
 
   it('Filtrowanie kategorii', () => {

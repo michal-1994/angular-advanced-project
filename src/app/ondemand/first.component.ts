@@ -4,9 +4,7 @@ import { Model } from "../model/repository.model";
 
 @Component({
   selector: 'first',
-  template: `<div class="bg-primary text-white p-2">
-    Mamy <span class="strong"> {{ getProducts().length }} </span> produktów
-  </div>`
+  templateUrl: './first.component.html'
 })
 export class FirstComponent {
 
