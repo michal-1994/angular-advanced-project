@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output } from "@angular/core";
+import { Component, EventEmitter, HostListener, Input, Output } from "@angular/core";
 import { Product } from "../model/product.model";
 import { Model } from "../model/repository.model";
 
@@ -14,12 +14,15 @@ export class FirstComponent {
   @Output('pa-highlight')
   change = new EventEmitter<boolean>();
 
+  @Input('pa-model')
+  model: Model;
+
   constructor (
     private repository: Model
   ) { }
 
   getProducts (): Product[] {
-    return this.repository.getProducts()
+    return this.model == null ? [] : this.repository.getProducts()
       .filter(product => product.category == this.category);
   }
 

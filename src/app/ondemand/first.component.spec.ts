@@ -1,12 +1,26 @@
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { Product } from '../model/product.model';
 import { Model } from '../model/repository.model';
 import { FirstComponent } from './first.component';
 
+@Component({
+  template: `<first [pa-model]="model"></first>`
+})
+class TestComponent {
+
+  constructor (
+    public model: Model
+  ) { }
+
+  @ViewChild(FirstComponent)
+  firstComponent: FirstComponent;
+
+}
+
 describe('FirstComponent', () => {
-  let fixture: ComponentFixture<FirstComponent>;
+  let fixture: ComponentFixture<TestComponent>;
   let component: FirstComponent;
   let debugElement: DebugElement;
   let spanElement: HTMLSpanElement;
@@ -24,18 +38,31 @@ describe('FirstComponent', () => {
 
   beforeEach(async() => {
     TestBed.configureTestingModule({
-      declarations: [FirstComponent],
+      declarations: [FirstComponent, TestComponent],
       providers: [
         { provide: Model, useValue: mockRepository }
       ]
     });
     TestBed.compileComponents().then(() => {
-      fixture = TestBed.createComponent(FirstComponent);
-      component = fixture.componentInstance;
-      debugElement = fixture.debugElement;
+      fixture = TestBed.createComponent(TestComponent);
+      fixture.detectChanges();
+      component = fixture.componentInstance.firstComponent;
+      debugElement = fixture.debugElement.query(By.directive(FirstComponent));
       spanElement = debugElement.query(By.css('span')).nativeElement;
       divElement = debugElement.children[0].nativeElement;
     });
+  });
+
+  it('Otrzymanie modelu za pomocą właściwości danych wejściowych', () => {
+    component.category = 'Szachy';
+    fixture.detectChanges();
+    let products = mockRepository.getProducts()
+      .filter(product => product.category == component.category);
+    let componentProducts = component.getProducts();
+    for (let i = 0; i < componentProducts.length; i++) {
+      expect(componentProducts[i]).toEqual(products[i]);
+    }
+    expect(debugElement.query(By.css('span')).nativeElement.textContent).toContain(products.length);
   });
 
   it('Implementacja właściwości danych wyjściowych', () => {
